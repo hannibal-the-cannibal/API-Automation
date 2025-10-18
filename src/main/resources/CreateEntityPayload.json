@@ -1,0 +1,13 @@
+{
+  "EntityName": "Test SiteDict show_addentity 122",
+  "EntityTypeId": 0,
+  "taxId": "",
+  "ReportingFranchiseId": 824,
+  "parentId": 437569,
+  "fiscalYearEndMonth": 12,
+  "countryId": 1335,
+  "stateId": 1246,
+  "accountNumber": "",
+  "typeOfContractorId": 0,
+  "SuretyAgent" : 102113,
+}

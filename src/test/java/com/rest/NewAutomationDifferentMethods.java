@@ -7,10 +7,12 @@ import io.restassured.RestAssured;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class NewAutomationDifferentMethods {
-    String token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImV4dGVybmFsdXMiLCJyb2xlIjoiRXh0ZXJuYWwiLCJjbGllbnRJRCI6IjExOCIsIm5iZiI6MTc2MDgwOTY1NiwiZXhwIjoxNzYwODExNDU2LCJpYXQiOjE3NjA4MDk2NTZ9.C22_uy_G9ZM1RFW0d7cBCmT9qKzRHjZpVd2N3My-8lI";
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
-    @BeforeClass
+public class NewAutomationDifferentMethods {
+    String token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImV4dGVybmFsdXMiLCJyb2xlIjoiRXh0ZXJuYWwiLCJjbGllbnRJRCI6IjExOCIsIm5iZiI6MTc2MDgxNjg3MywiZXhwIjoxNzYwODE4NjczLCJpYXQiOjE3NjA4MTY4NzN9.YvHbegVLipOWgFoFd71fp31Be-BZKM06hEfFwjj1Yyc";
     public void beforesetup(){
         RestAssured.baseURI="https://cpasaapiqa.crowe.com";
     }
@@ -34,6 +36,49 @@ public class NewAutomationDifferentMethods {
                 headers("Authorization", "Bearer " + token).
                 contentType("application/json").
                 body(payload).
+
+                when().
+                post("/api/v1/entity").
+
+                then().
+                log().all().
+                assertThat().
+                statusCode(200).
+                assertThat().
+                body("Entityname",equalTo("Test SiteDict show_addentity 12"),
+                        "entityId.toString()", matchesPattern("^\\d{6}$"));
+
+    }
+
+    @Test
+    public void postrequestwithfile(){
+        File file= new File("src/main/resources/CreateEntityPayload.json");
+
+        given().
+                headers("Authorization", "Bearer " + token).
+                contentType("application/json").
+                body(file).
+
+                when().
+                post("/api/v1/entity").
+
+                then().
+                log().all().
+                assertThat().
+                statusCode(200).
+                assertThat().
+                body("Entityname",equalTo("Test SiteDict show_addentity 122"),
+                        "entityId.toString()", matchesPattern("^\\d{6}$"));
+
+    }
+
+    @Test
+    public void postrequestwithJSONArrayasList(){
+        Map<String,String> map= new HashMap<>();
+        given().
+                headers("Authorization", "Bearer " + token).
+                contentType("application/json").
+                body(map).
 
                 when().
                 post("/api/v1/entity").
@@ -82,6 +127,25 @@ public class NewAutomationDifferentMethods {
 
         when().
                 delete("/api/v1/entity/{entityId}/{username}").
+
+                then()
+                .log().all().
+                statusCode(200);
+    }
+
+    @Test
+    public void multiplequeryparam(){
+
+
+        given().
+                headers("Authorization", "Bearer " + token).
+                contentType("application/json").
+                queryParam("startDateTime","2025-10-15").
+                queryParam("endDateTime","2025-10-17").
+
+
+                when().
+                get("/api/v1/datagroup/search").
 
                 then()
                 .log().all().
