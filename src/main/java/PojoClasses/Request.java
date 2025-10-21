@@ -3,7 +3,7 @@ package PojoClasses;
 import java.util.List;
 
 public class Request {
-    private String url;
+    private Object url;
     private String method;
     List<Header> header;
     Body body;
@@ -13,7 +13,7 @@ public class Request {
 
     }
 
-    public Request(String url, String method, List<Header> header, Body body, String description) {
+    public Request(Object url, String method, List<Header> header, Body body, String description) {
         this.url = url;
         this.method = method;
         this.header = header;
@@ -21,11 +21,11 @@ public class Request {
         this.description = description;
     }
 
-    public String getUrl() {
+    public Object getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
+    public void setUrl(Object url) {
         this.url = url;
     }
 

@@ -18,7 +18,6 @@
         <jackson.version>2.18.1</jackson.version>
     </properties>
 
-    <!-- Keep all Jackson modules on the same version -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -33,7 +32,7 @@
 
     <dependencies>
 
-        <!-- REST Assured core dependency -->
+        <!-- REST Assured -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -41,7 +40,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JSON Schema Validator for REST Assured -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>json-schema-validator</artifactId>
@@ -49,7 +47,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- REST Assured XML support -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>xml-path</artifactId>
@@ -57,7 +54,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Jackson: core set -->
+        <!-- Jackson -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
@@ -70,8 +67,6 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
-
-        <!-- Jackson: helpful modules -->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
@@ -85,7 +80,7 @@
             <artifactId>jackson-module-parameter-names</artifactId>
         </dependency>
 
-        <!-- Hamcrest for assertions -->
+        <!-- Hamcrest -->
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
@@ -93,7 +88,15 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JUnit 5 for testing -->
+        <!-- JSONassert (Skyscreamer) -->
+        <dependency>
+            <groupId>org.skyscreamer</groupId>
+            <artifactId>jsonassert</artifactId>
+            <version>1.5.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JUnit 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -101,7 +104,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- TestNG (optional, if you prefer it over JUnit) -->
+        <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -109,14 +112,14 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JSON library -->
+        <!-- org.json -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20240303</version>
         </dependency>
 
-        <!-- Apache Commons Lang (optional utilities for string/object handling) -->
+        <!-- Apache Commons Lang -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -127,7 +130,6 @@
 
     <build>
         <plugins>
-            <!-- Maven Surefire Plugin to run JUnit/TestNG tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
